@@ -12,39 +12,39 @@ function startGame () {
 var choices = [
     {question: "To get over Richard, what did Monica start making?",     
     options: ["Pancakes", "Marmalade", "Jam", "Candy"],
-   // image1: '' ,
+    image: "assets/images/question1.gif",
     correct: 3},
     {question: "What was the name of the self help book that the girls loved?",
     options: ["Be Your Own Person", "Be Your Own Cleaning Pool", "Be Your Own Windkeeper", "Be Your Own Lightning Bearer"],
-    //  image2: '' ,
+    image: "assets/images/question2.gif",
     correct: 3},
     {question: "Where was the 'Aroma' room?",
     options: ["Monica's dollhouse ", "Phoebe's dollhouse", "Chandler and Joey's apartment", "The Chick and The Duck's cabinet"],
-    // image3: '' ,
+    image: "assets/images/question3.gif",
     correct: 2},
-    {question: "What was wrong with the couch Ross returned to the store?",
-    options: ["The color was wrong", "It had a stain", "It was cut in half", "It was torn"],
-    // image4: '' ,
-    correct: 1},
     {question: "What was the name of Eddie's ex-girlfriend?",
     options: ["Tanya", "Leslie", "Tilly", "Tara"],
-    //  image5: '' ,
+    image: "assets/images/question4.gif",
     correct: 3},
     {question: "How many long-stemmed roses did Ross send to Emily?",
     options: ["72", "52", "100", "86"],
-    //  image6: '' ,
+    image: "assets/images/question5.gif",
     correct: 1},
     {question: "What was Phoebe in charge of at Rachel's suprise party?",
     options: ["Cups and food", "Ice and food", "Balloons and ice", "Cups and ice"], 
-    //  image7: '' ,
+    image: "assets/images/question6.gif",
     correct: 1},
     {question: "How many lasagnas did Monica make for her aunt?",
     options: ["12", "14", "13", "6"], 
-    //  image8: '' ,
+    image: "assets/images/question7.gif",
     correct: 1},
     {question: "What heirloom did Phoebe inherit?",
     options: ["A fur coat", "A chair", "A dollhouse", "A puppy"],
-    //  image9: '' ,
+    image: "assets/images/question8.gif",
+    correct: 1},
+    {question: "What was wrong with the couch Ross returned to the store?",
+    options: ["The color was wrong", "It had a stain", "It was cut in half", "It was torn"],
+    image: "assets/images/question9.gif",
     correct: 1}
 ]; 
 
@@ -98,6 +98,7 @@ function startQuestions() {
         clearInterval(secondsInterval);
         $("#questions").text("");
         $("#choices").html("<div class='choicestyling'>" + "Correct!" + '</div>');
+        $("#choices").append("<img src=" + choices[count].image + '>');
         count++;
         setTimeout(displayQuestion, 3000);
         secondsTimer = 16; 
@@ -111,6 +112,7 @@ function startQuestions() {
         clearInterval(secondsInterval);
         $("#questions").text("");
         $("#choices").html("<div class='choicestyling'>" + "Nope! The correct answer was " + choices[count].options[correctresponse] + "!" + '</div>');
+        $("#choices").append("<img src=" + choices[count].image + '>');
         count++;
         setTimeout(displayQuestion, 3000);
         secondsTimer = 16; 
@@ -121,18 +123,20 @@ function startQuestions() {
     //  Increment the count by 1.
     count++;
     //Use a setTimeout to run displayQuestion after 1 second.
-   // setTimeout(displayQuestion, 1000);
+//    setTimeout(displayQuestion, 1000);
     //If the count is the same as the length of the question array, reset the count to 0.
-   if (count === questions.length && choices.length) {
+   if (count === choices.length) {
       count = 0;
     }
     }
 
-    //   function stopQuestion() {
-    //     //Put our clearInterval here:
-    //     clearInterval(showQuestions); 
-    //   }     
-    }
+//   function stopQuestion() {
+//     //     //Put our clearInterval here:
+//    clearInterval(showQuestions); 
+//     //   }
+//   }  
+  }   
+    
 
     startGame();
     
