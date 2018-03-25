@@ -61,8 +61,8 @@ function startGame () {
 function startQuestions() {
         $("#start").hide();
         displayQuestion();
-        showQuestions = setInterval(nextQuestion, 16000);         
-        //Use showQuestions to hold the setInterval to run nextQuestion.
+        // showQuestions = setInterval(nextQuestion, 16000);         
+        // Use showQuestions to hold the setInterval to run nextQuestion.
 
     function displayQuestion() {
         var secondsInterval = setInterval(countdownTimer, 1000);  
@@ -114,7 +114,7 @@ function startQuestions() {
         setTimeout(displayQuestion, 5000);
         secondsTimer = 16;
         nextQuestion();
-    }
+    }}
     
     function nextQuestion() {
         //  Increment the count by 1.       
@@ -127,7 +127,7 @@ function startQuestions() {
     count = 0;
      }
         }
-}
+
 
 //   function stopQuestion() {
 //     //     //Put our clearInterval here:
@@ -138,4 +138,5 @@ function startQuestions() {
     
 
     startGame();
+
     
