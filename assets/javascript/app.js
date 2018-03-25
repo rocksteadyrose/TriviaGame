@@ -1,13 +1,16 @@
+// Variable showQuestion will hold the setInterval when we start the game
+var showQuestion;
+var startQuestions;
+// Count will keep track of the index of the currently displaying question.
+var count = 0;
+var showChoices;
+var startChoices;
+var secondsTimer = 16;
 var gameOn = false;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
 var unAnswered = 0;
 var questionAsked = false;
-
-function startGame () {
-    gameOn = true;
-    $("#start").click(startQuestions);
-}
 
 var choices = [
     {question: "To get over Richard, what did Monica start making?",     
@@ -48,25 +51,21 @@ var choices = [
     correct: 1}
 ]; 
 
-// Variable showQuestion will hold the setInterval when we start the game
-var showQuestion;
-var startQuestions;
-// Count will keep track of the index of the currently displaying question.
-var count = 0;
-var showChoices;
-var startChoices;
-var secondsTimer = 16;
 
 
+function startGame () {
+    gameOn = true;
+    $("#start").click(startQuestions);
+}
 
 function startQuestions() {
         $("#start").hide();
         displayQuestion();
+        showQuestions = setInterval(nextQuestion, 16000);         
         //Use showQuestions to hold the setInterval to run nextQuestion.
-        showQuestions = setInterval(nextQuestion, 15000);
 
     function displayQuestion() {
-        var secondsInterval = setInterval(countdownTimer, 1000);           
+        var secondsInterval = setInterval(countdownTimer, 1000);  
         function countdownTimer() {
         secondsTimer--;
         $("#seconds").text("Time Remaining: " + secondsTimer + "Seconds");
@@ -99,43 +98,43 @@ function startQuestions() {
         $("#questions").text("");
         $("#choices").html("<div class='choicestyling'>" + "Correct!" + '</div>');
         $("#choices").append("<img src=" + choices[count].image + '>');
-        count++;
-        setTimeout(displayQuestion, 3000);
-        secondsTimer = 16; 
+        setTimeout(displayQuestion, 5000);
+        secondsTimer = 16;
+        nextQuestion();
     }
 
     function questionWrong(idInput) {
         var correctresponse = choices[count].correct - 1;
-        console.log(correctresponse);
         correctAnswer--;
         incorrectAnswer++;
         clearInterval(secondsInterval);
         $("#questions").text("");
         $("#choices").html("<div class='choicestyling'>" + "Nope! The correct answer was " + choices[count].options[correctresponse] + "!" + '</div>');
         $("#choices").append("<img src=" + choices[count].image + '>');
-        count++;
-        setTimeout(displayQuestion, 3000);
-        secondsTimer = 16; 
+        setTimeout(displayQuestion, 5000);
+        secondsTimer = 16;
+        nextQuestion();
     }
-}
-   
+    
     function nextQuestion() {
-    //  Increment the count by 1.
-    count++;
-    //Use a setTimeout to run displayQuestion after 1 second.
-//    setTimeout(displayQuestion, 1000);
-    //If the count is the same as the length of the question array, reset the count to 0.
-   if (count === choices.length) {
-      count = 0;
-    }
-    }
+        //  Increment the count by 1.       
+        count++;
+        console.log(count);
+        //Use a setTimeout to run displayQuestion after 1 second.
+    //    setTimeout(displayQuestion, 1000);
+        //If the count is the same as the length of the question array, reset the count to 0.
+    if (count === choices.length) {
+    count = 0;
+     }
+        }
+}
 
 //   function stopQuestion() {
 //     //     //Put our clearInterval here:
 //    clearInterval(showQuestions); 
 //     //   }
-//   }  
-  }   
+  }  
+ 
     
 
     startGame();
