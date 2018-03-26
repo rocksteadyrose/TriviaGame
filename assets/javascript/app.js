@@ -5,13 +5,16 @@ var startQuestions;
 var count = 0;
 var showChoices;
 var startChoices;
+var restartReady = false;
 var secondsTimer = 16;
 var gameOn = false;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
 var unAnswered = 0;
-var unAnswered = 0;
 var questionAsked = false;
+var secondsInterval;
+
+
 
 var choices = [
     {question: "To get over Richard, what did Monica start making?",     
@@ -62,8 +65,6 @@ var choices = [
     incorrect: [2, 3, 4]}
 ]; 
 
-
-
 function startGame () {
     gameOn = true;
     $("#start").click(startQuestions);
@@ -76,13 +77,13 @@ function startQuestions() {
         // Use showQuestions to hold the setInterval to run nextQuestion.
 
     function displayQuestion() {
-        var secondsInterval = setInterval(countdownTimer, 1000);  
+        secondsTimer = 16;
+        secondsInterval = setInterval(countdownTimer, 1000);  
         function countdownTimer() {
         secondsTimer--;
         $("#seconds").text("Time Remaining: " + secondsTimer + "Seconds");
         if (secondsTimer <= 1) {
             clearInterval(secondsInterval);
-            secondsTimer;
             questionNotAnswered();
             }}
 
@@ -118,60 +119,91 @@ function startQuestions() {
         $("#choices").html("<div class='choicestyling'>" + "Correct!" + '</div>');
         $("#choices").append("<img src=" + choices[count].image + '>');
         setTimeout(displayQuestion, 5000);
-        secondsTimer = 16;
+       // secondsTimer = 5;
         nextQuestion();
     }
 
     function questionWrong(idInput) {
         var correctResponse = choices[count].correct - 1;
         //Re-define correctresponse so it gives us one less since the 'correct' objects start at 1 but the array index starts at 0
-        correctAnswer--;
         incorrectAnswer++;
         clearInterval(secondsInterval);
         $("#questions").text("");
         $("#choices").html("<div class='choicestyling'>" + "Nope! The correct answer was " + choices[count].options[correctResponse] + "!" + '</div>');
         $("#choices").append("<img src=" + choices[count].image + '>');
         setTimeout(displayQuestion, 5000);
-        secondsTimer = 16;
+        //secondsTimer = 5;
         nextQuestion();
     }
 
     function questionNotAnswered(idInput) {
         var correctResponse = choices[count].correct - 1;
         unAnswered++;
-        console.log(unAnswered);
         clearInterval(secondsInterval);
         $("#questions").text("");
         $("#choices").html("<div class='choicestyling'>" + "Out of time! The correct answer was " + choices[count].options[correctResponse] + "!" + '</div>');
         $("#choices").append("<img src=" + choices[count].image + '>');
         setTimeout(displayQuestion, 5000);
-        secondsTimer = 16;
-        nextQuestion();
+        //secondsTimer = 5;
+        nextQuestion(secondsInterval);
     } 
+
 }
     
-    function nextQuestion() {
+function nextQuestion(secondsInterval) {
         //  Increment the count by 1.       
         count++;
         //Use a setTimeout to run displayQuestion after 1 second.
-    //    setTimeout(displayQuestion, 1000);
+     //setTimeout(displayQuestion, 1000);
         //If the count is the same as the length of the question array, reset the count to 0.
     if (count === choices.length) {
     //count = 0;
-    stopQuestion();
+   //clearInterval(nextQuestion);
+    tally(secondsInterval);
      }
         }
 
 
+        function tally(secondsInterval) {
+            clearInterval(secondsInterval);
+            $("#seconds").text("''");
+            $("#questions").text("All done! Here's how you did:");
+            $("#choices").html("<div class='pointsstyling'>" + "Correct answers: " + correctAnswer + "<br>"  + "Incorrect answers: " + incorrectAnswer + "<br>" + "Unanswered questions: " + unAnswered +  '</div>');
+            var restartButton = $("<button>");
+            restartButton.attr('id', 'buttonrestart');
+            var buttonTitle = $("<h2>");
+            buttonTitle.text("Restart");
+            restartButton.append(buttonTitle);
+            var buttonDiv = $("<buttondiv>");
+            buttonDiv.append(restartButton);
+            $('#restart').append(buttonDiv);
+            restartReady = true;
+            if (restartReady) {
+                $('#buttonrestart').click(function(){
+                    reset(secondsInterval);
+                })}
+            
+        }
+
+        function reset(secondsInterval) {
+            $('#buttonrestart').hide();
+            correctAnswer = 0;
+            incorrectAnswer = 0;
+            unAnswered = 0;
+            count = 0;
+            secondsTimer = 16;
+            displayQuestion(secondsInterval);
+
+        }
   }  
  
 
-  function stopQuestion() {
-    //     //     //Put our clearInterval here:
-        clearInterval(displayQuestion); 
-          }
+//   function stopQuestion() {
+//     //     //     //Put our clearInterval here:
+//         clearInterval(displayQuestion); 
+//           }
     
 
     startGame();
-    stopQuestion();
+    //stopQuestion();
     
