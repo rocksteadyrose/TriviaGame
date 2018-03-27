@@ -17,8 +17,8 @@ html, body {
 button {
     background-color: white;
     border: none;
-    bottom: 345px;
-    left: 100px;
+    bottom: 235px;
+    left: 260px;
 }
 
 #picframe {
@@ -45,8 +45,8 @@ button {
 #friendstitle {
     width: 360px;
     position: absolute;
-    bottom: 460px;
-    left: 90px;
+    bottom: 350px; /*-90*/
+    left: 250px; /*+160*/
 }
 
 #questions {
@@ -54,8 +54,8 @@ button {
     font-size: 24px;
     position: absolute;
     text-align: center;
-    bottom: 470px;
-    left: 70px;
+    bottom: 360px;
+    left: 220px;
 }
 
 #seconds {
@@ -63,15 +63,8 @@ button {
     font-size: 20px;
     position: absolute;
     text-align: center;
-    bottom: 610px;
-    left: 79px;
-}
-
-#answergif {
-    width: 350px;
-    position: absolute;
-    bottom: 60px;
-    left: 60px;
+    bottom: 510px;
+    left: 220px;
 }
 
 #choices {
@@ -79,8 +72,8 @@ button {
     font-size: 18px;
     position: absolute;
     text-align: center;
-    bottom: 300px;
-    left: 38px;
+    bottom: 200px;
+    left: 180px;
 }
 
 .gamedone {
@@ -101,40 +94,57 @@ button {
     left: 1px;
 }
 
-.jumbotron {
-background-color: white;
-margin-left: 160px;
-position: absolute;
+.col-md-12 {
+    background-color: white;
+    position: absolute;
 }
 
 #start {
-margin-top: 30px;
-margin-left: 125px;
-position: absolute;
+    margin-top: 30px;
+    margin-left: 125px;
+    position: absolute;
 }
 
 #buttonrestart {
-position: absolute;
-bottom: 290px;
-left: 200px;
+    position: absolute;
+    bottom: 200px;
+    left: 345px;
 }
 
 #questions, #choices, #seconds {
     font-family: "friendsfont", Arial, Helvetica, sans-serif;
 }
 
-#gifid3 {
-    width: 200px;
+#gifid0 {
     position: absolute;
-    bottom: 50px;
-    left: 4px;
+    left: 15px;
+    bottom: -20px;
+}
+
+#gifid1 {
+    position: absolute;
+    left: 15px;
+    bottom: 5px;
+}
+
+#gifid2 {
+    position: absolute;
+    left: 20px;
+    bottom: 5px;
 }
 
 #gifid3 {
     width: 200px;
     position: absolute;
     bottom: 40px;
-    left: 4px;
+    left: 10px;
+}
+
+#gifid4 {
+    width: 200px;
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
 }
 
 #gifid5 img {
@@ -144,18 +154,23 @@ left: 200px;
     left: 150px;
 }
 
+#gifid6 img {
+    position: absolute;
+    left: 80px;
+}
+
 #gifid7 img  {
     width: 250px;
     position: absolute;
-    bottom: 70px;
-    left: 98px;
+    bottom: 75px;
+    left: 120px;
 }
 
 #gifid8 {
     width: 100px;
     position: absolute;
-    bottom: 30px;
-    left: 4px;
+    bottom: 20px;
+    left: 15px;
 }
 
 #gifending img {
@@ -163,4 +178,11 @@ left: 200px;
     position: absolute;
     bottom: 80px;
     left: 160px;
+}
+
+#answergif {
+    width: 350px;
+    position: absolute;
+    bottom: 80px;
+    left: 60px;
 }
