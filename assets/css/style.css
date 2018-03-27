@@ -20,7 +20,6 @@ button {
     bottom: 235px;
     left: 245px;
     font-family: "friendsfont";
-
 }
 
 #start {
@@ -58,15 +57,15 @@ button:active {
 }
 
 
-#picframe {
-    width: 850px;
-    height: 800px;
-}
-
 #frame {
     position: relative;
     left: 50px;
     top: -60px; 
+}
+
+#picframe {
+    width: 850px;
+    height: 800px;
 }
 
 #startgif {
@@ -163,10 +162,11 @@ button:active {
     font-family: "friendsfont", Arial, Helvetica, sans-serif;
 }
 
-#gifid0 {
+#gifid0 img {
+    width: 250px;
     position: absolute;
-    left: 10px;
-    bottom: -20px;
+    bottom: 105px;
+    left: 120px;
 }
 
 #gifid1 {
