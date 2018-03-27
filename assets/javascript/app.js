@@ -95,7 +95,7 @@ function startQuestions() {
             }}
 
         $("#questions").text(choices[count].question);
-        $("#choices").html("<div class='buttons'>" + "<button id='1'>" + choices[count].options[0] + "</button>" + "<br>"  + "<button id='2'>" + choices[count].options[1] + "</button>" + "<br>" + "<button id='3'>" + choices[count].options[2] + "</button>" + "<br>" + "<button id='4'>" + choices[count].options[3] + "</button>" + '</div>');
+        $("#choices").html("<div class='buttons'>" + "<button value='1' id='button1'>" + choices[count].options[0] + "</button>" + "<br>"  + "<button value='2' id='button2'>" + choices[count].options[1] + "</button>" + "<br>" + "<button value='3' id='button3'>" + choices[count].options[2] + "</button>" + "<br>" + "<button value='4' id='button4'>" + choices[count].options[3] + "</button>" + '</div>');
 
         questionAsked = true;
         questionPoints(secondsTimer);
@@ -103,7 +103,7 @@ function startQuestions() {
         function questionPoints(secondsTimer) {
         if (questionAsked) {
             $("button").click(function(){
-                var idInput = $(this).attr('id');
+                var idInput = $(this).attr('value');
                 var correctResponse = choices[count].correct;
                 
                 if (idInput == correctResponse) {
@@ -150,7 +150,7 @@ function startQuestions() {
         unAnswered++;
         clearInterval(secondsInterval);
         $("#questions").text("");
-        $("#choices").html("<div class='choicestyling'>" + "Out of time!" + "<br>" + "The correct answer was " + choices[count].options[correctResponse] + "!" + '</div>');
+        $("#choices").html("<div class='choicestyling'>" + "Out of time!" + "<br>" + "The correct answer was " + "<br>" + choices[count].options[correctResponse] + "!" + '</div>');
         var gifdiv = $("<div>").attr("id", "gifid" + count);
         gifdiv.append("<img id='answergif' src=" + choices[count].image + '>');
         $("#choices").append(gifdiv);

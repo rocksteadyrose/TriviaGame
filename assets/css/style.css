@@ -18,8 +18,45 @@ button {
     background-color: white;
     border: none;
     bottom: 235px;
-    left: 260px;
+    left: 245px;
+    font-family: "friendsfont";
+
 }
+
+#start {
+    background-color: blue;
+}
+
+#start:hover{
+    background-color: yellow;
+    color: black;
+}
+
+#start:active{
+    background-color: red;
+    color: blue;
+}
+
+#button1:hover {
+    color: red;
+}
+
+#button2:hover {
+    color: rgb(119, 0, 255);
+}
+
+#button3:hover {
+    color: rgb(255, 238, 0);
+}
+
+#button4:hover {
+    color: rgb(0, 81, 255);
+}
+
+button:active {
+    color: rgb(212, 20, 110);
+}
+
 
 #picframe {
     width: 850px;
@@ -108,7 +145,18 @@ button {
 #buttonrestart {
     position: absolute;
     bottom: 200px;
-    left: 345px;
+    left: 335px;
+    background-color: blue;
+}
+
+#buttonrestart:hover{
+    background-color: yellow;
+    color: black;
+}
+
+#buttonrestart:active{
+    background-color: red;
+    color: blue;
 }
 
 #questions, #choices, #seconds {
@@ -117,7 +165,7 @@ button {
 
 #gifid0 {
     position: absolute;
-    left: 15px;
+    left: 10px;
     bottom: -20px;
 }
 
@@ -184,5 +232,5 @@ button {
     width: 350px;
     position: absolute;
     bottom: 80px;
-    left: 60px;
+    left: 65px;
 }
