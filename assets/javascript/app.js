@@ -1,5 +1,4 @@
 var startQuestions;
-// Count will keep track of the index of the currently displaying question.
 var count = 0;
 var showChoices;
 var startChoices;
@@ -18,11 +17,18 @@ var correctAnswerResponsePosted;
 
 function startGame () {
     gameOn = true;
+    var startGif = "assets/images/startgame.gif";
+    var imgforGif = $("<img>");
+    // imgforGif.attr("src", startGif).width(250).height(160);
+    // imgforGif.addClass("startgif");
+    // $("#startsection").append(imgforGif);
     $("#start").click(startQuestions);
 }
 
 function startQuestions() {
         $("#start").hide();
+        $("#startsection").hide();
+        $("#friendstitle").hide();
         displayQuestion();
         // showQuestions = setInterval(nextQuestion, 16000);         
         // Use showQuestions to hold the setInterval to run nextQuestion.
@@ -34,8 +40,7 @@ function startQuestions() {
             options: ["Pancakes", "Marmalade", "Jam", "Candy"],
             image: "assets/images/question1.gif",
             correct: 3,
-            incorrect: [1, 2, 4]
-        },
+            incorrect: [1, 2, 4]},
             {question: "What was the name of the self help book that the girls loved?",
             options: ["Be Your Own Person", "Be Your Own Cleaning Pool", "Be Your Own Windkeeper", "Be Your Own Lightning Bearer"],
             image: "assets/images/question2.gif",
@@ -58,7 +63,7 @@ function startQuestions() {
             incorrect: [2, 3, 4]},
             {question: "What was Phoebe in charge of at Rachel's suprise party?",
             options: ["Cups and food", "Ice and food", "Balloons and ice", "Cups and ice"], 
-            image: "assets/images/question6.gif",
+            image: "assets/images/question6a.gif",
             correct: 1,
             incorrect: [2, 3, 4]},
             {question: "How many lasagnas did Monica make for her aunt?",
@@ -78,19 +83,23 @@ function startQuestions() {
             incorrect: [2, 3, 4]}
         ]; 
 
-        secondsTimer = 16;
-        secondsInterval = setInterval(countdownTimer, 1000);  
-        function countdownTimer() {
-        secondsTimer--;
-        $("#seconds").text("Time Remaining: " + secondsTimer + "Seconds");
-        if (secondsTimer <= 1) {
+        secondsTimer = 15;
+        $("#seconds").text("Time Remaining: " + secondsTimer + " Seconds");
+        secondsInterval = setInterval(countdownTimer, 1000);
+        function countdownTimer() {          
+            secondsTimer--;
+            $("#seconds").text("Time Remaining: " + secondsTimer + " Seconds");
+        if (secondsTimer <= 0) {
             clearInterval(secondsInterval);
             questionNotAnswered();
             }}
+
         $("#questions").text(choices[count].question);
         $("#choices").html("<div class='buttons'>" + "<button id='1'>" + choices[count].options[0] + "</button>" + "<br>"  + "<button id='2'>" + choices[count].options[1] + "</button>" + "<br>" + "<button id='3'>" + choices[count].options[2] + "</button>" + "<br>" + "<button id='4'>" + choices[count].options[3] + "</button>" + '</div>');
+
         questionAsked = true;
         questionPoints(secondsTimer);
+
         function questionPoints(secondsTimer) {
         if (questionAsked) {
             $("button").click(function(){
@@ -113,27 +122,24 @@ function startQuestions() {
         clearInterval(secondsInterval);
         $("#questions").text("");
         $("#choices").html("<div class='choicestyling'>" + "Correct!" + '</div>');
-        $("#choices").append("<img src=" + choices[count].image + '>');
+        var gifdiv = $("<div>").attr("id", "gifid" + count);
+        gifdiv.append("<img id='answergif' src=" + choices[count].image + '>');
+        $("#choices").append(gifdiv);
         setTimeout(displayQuestion, 5000);
         secondsTimer = 16;
         nextQuestion();
-    //    if (count == 9) {
-    //     $("#choices").html("<div class='choicestyling'>" + "Correct!" + '</div>');
-    //     $("#choices").append("<img src=" + choices[count].image + '>');
-    //     setTimeout(displayQuestion, 5000);
-    //     tally(secondsInterval);
-    //    } else
-    //     {     
     }
-
+//gifid5 //gifid7 //gifid8
     function questionWrong(idInput) {
         var correctResponse = choices[count].correct - 1;
         //Re-define correctResponse so it gives us one less since the 'correct' objects start at 1 but the array index starts at 0
         incorrectAnswer++;
         clearInterval(secondsInterval);
         $("#questions").text("");
-        $("#choices").html("<div class='choicestyling'>" + "Nope! The correct answer was " + choices[count].options[correctResponse] + "!" + '</div>');
-        $("#choices").append("<img src=" + choices[count].image + '>');
+        $("#choices").html("<div class='choicestyling'>" + "Nope! The correct answer was " + "<br>" + choices[count].options[correctResponse] + "!" + '</div>');
+        var gifdiv = $("<div>").attr("id", "gifid" + count);
+        gifdiv.append("<img id='answergif' src=" + choices[count].image + '>');
+        $("#choices").append(gifdiv);
         setTimeout(displayQuestion, 5000);
         secondsTimer = 16;
         nextQuestion();
@@ -144,8 +150,10 @@ function startQuestions() {
         unAnswered++;
         clearInterval(secondsInterval);
         $("#questions").text("");
-        $("#choices").html("<div class='choicestyling'>" + "Out of time! The correct answer was " + choices[count].options[correctResponse] + "!" + '</div>');
-        $("#choices").append("<img src=" + choices[count].image + '>');
+        $("#choices").html("<div class='choicestyling'>" + "Out of time!" + "<br>" + "The correct answer was " + choices[count].options[correctResponse] + "!" + '</div>');
+        var gifdiv = $("<div>").attr("id", "gifid" + count);
+        gifdiv.append("<img id='answergif' src=" + choices[count].image + '>');
+        $("#choices").append(gifdiv);
         setTimeout(displayQuestion, 5000);
         secondsTimer = 16;
         nextQuestion();
@@ -153,7 +161,6 @@ function startQuestions() {
 
     
 function nextQuestion(secondsInterval) {
-        //  Increment the count by 1.       
         count++;
         //Use a setTimeout to run displayQuestion after 1 second.
         //setTimeout(displayQuestion, 1000);
@@ -161,22 +168,21 @@ function nextQuestion(secondsInterval) {
             setTimeout(tally, 5000);
             count = 0;
              }
-                }
-     
-        //If the count is the same as the length of the question array, reset the count to 0.
-             
+                }             
 
         function tally() {
-            //  questionPoints();
               clearInterval(secondsInterval);
-              //setTimeout(displayQuestion, 10000);
               $("#seconds").text("");
-              $("#questions").text("All done! Here's how you did:");
+              $("#questions").html("<div class='gamedone'>" + "Could this game BE anymore over?" + "<br>" + "Here's your score:" +  '</div>');
               $("#choices").html("<div class='pointsstyling'>" + "Correct answers: " + correctAnswer + "<br>"  + "Incorrect answers: " + incorrectAnswer + "<br>" + "Unanswered questions: " + unAnswered +  '</div>');
+              var gifdiv = $("<div>").attr("id", "gifending");
+              gifdiv.append("<img src='assets/images/win.gif'>");
+              $("#choices").append(gifdiv);
               var restartButton = $("<button>");
               restartButton.attr('id', 'buttonrestart');
+              restartButton.addClass("btn btn-primary btn-md");
               var buttonTitle = $("<h2>");
-              buttonTitle.text("Restart");
+              buttonTitle.text("Restart?");
               restartButton.append(buttonTitle);
               var buttonDiv = $("<buttondiv>");
               buttonDiv.append(restartButton);

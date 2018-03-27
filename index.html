@@ -7,17 +7,26 @@
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Friends Quiz</title>
 </head>
 <body>
-<div id="seconds"></div>
-<div id="questions"></div>
-<div id="choices"></div>
-<div id="button">
-    <button id="start"><h2>Start</h2></button>
-<div id="restart">
-</div>
+    <div class="container">
+        <div id="frame"><img id="picframe" src="assets/images/friendsframe.jpg" alt="friendsframe">
+            <div class="jumbotron">
+                <img id="friendstitle" src="assets/images/friendstitle.jpg" alt="friendstitle">
+                <div id="startsection"></div>
+                <div id="seconds"></div>
+                <div id="questions"></div>
+                <div id="choices"></div>
+                <div id="button">
+                    <button id="start" class="btn btn-primary btn-md"><h2>Start</h2></button>
+                </div>
+                <div id="restart"></div>
+            </div>
+        </div>
+    </div>
 <script type="text/javascript" src ="assets/javascript/app.js">
 </script>
 </body>
