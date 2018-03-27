@@ -10,7 +10,7 @@
 
 html, body {
     color: rgb(0, 0, 0);
-    max-width: 960px;
+    min-height: 100%;
     margin: 0 auto;
 }
 
