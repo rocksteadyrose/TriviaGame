@@ -10,7 +10,7 @@ var questionAsked = false;
 var secondsInterval;
 var friendsTheme = new Audio("assets/audio/friendstheme.wav");
 
-function startGame () {
+function startGame() {
     gameOn = true;
     var startGif = "assets/images/startgame.gif";
     var imgforGif = $("<img>");
