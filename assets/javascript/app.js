@@ -8,7 +8,7 @@ var incorrectResponse = false;
 var unAnswered = 0;
 var questionAsked = false;
 var secondsInterval;
-var friendsTheme = new Audio("assets/audio/friendstheme.mp3");
+var friendsTheme = new Audio("assets/audio/friendstheme.wav");
 
 function startGame () {
     gameOn = true;
