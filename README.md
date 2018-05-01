@@ -1,4 +1,6 @@
 # 'Are You A F.R.I.E.N.D.S Fanatic?' Trivia Game
+DEPLOYED PROJECT LINK: https://rocksteadyrose.github.io/TriviaGame/
+
 Test your knowledge of the TV show, 'Friends,' with this trivia game built using JavaScript, jQuery, CSS, and HTML.
 
 Press start to play and choose the correct answer from the choices below each question. Only one question will display until the player answers it or their time runs out.
